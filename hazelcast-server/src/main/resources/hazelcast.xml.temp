@@ -1,0 +1,32 @@
+<hazelcast
+        xsi:schemaLocation="http://www.hazelcast.com/schema/config
+http://www.hazelcast.com/schema/config/hazelcast-config-3.8.xsd"
+        xmlns="http://www.hazelcast.com/schema/config"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <network>
+        <port auto-increment="true" port-count="1">5701</port>
+        <join>
+            <multicast enabled="false">
+            </multicast>
+            <tcp-ip enabled="false">
+                <interface>127.0.0.1</interface>
+                <member-list>
+                    <member>127.0.0.1</member>
+                </member-list>
+            </tcp-ip>
+        </join>
+    </network>
+
+    <map name="sampleMap">
+
+    </map>
+
+   <!-- <map name="persons">
+        <map-store enabled="true">
+            <class-name>PersonMapStore</class-name>
+        </map-store>
+    </map>-->
+
+
+</hazelcast>
