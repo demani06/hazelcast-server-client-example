@@ -1,5 +1,6 @@
 package com.deepak.hazelcastserver.mapstore;
 
+import com.deepak.hazelcastserver.config.BeanUtil;
 import com.deepak.hazelcastserver.domain.Person;
 import com.deepak.hazelcastserver.domain.PersonWrapper;
 import com.deepak.hazelcastserver.repository.PersonWrapperRepository;
@@ -7,6 +8,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hazelcast.core.MapStore;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -16,15 +18,11 @@ import java.util.Random;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-@Repository
+@Component
 public class PersonMapStore implements MapStore<Long, Person> {
 
     @Autowired
     PersonWrapperRepository personWrapperRepository;
-
-    @Autowired
-    EntityManager entityManager;
-
 
     @Override
     public void store(Long aLong, Person person) {
@@ -45,8 +43,10 @@ public class PersonMapStore implements MapStore<Long, Person> {
 
         System.out.println("jsonResponse=="+jsonResponse);
         System.out.println("rand.nextInt()=="+rand.nextInt());
+
+        PersonWrapperRepository personWrapperRepository = BeanUtil.getBean(PersonWrapperRepository.class);
+
         System.out.println("personWrapperRepository=="+personWrapperRepository);
-        System.out.println("entiman=="+entityManager);
         PersonWrapper personWrapper = new PersonWrapper(rand.nextInt(1000), jsonResponse);
 
         personWrapperRepository.save(personWrapper);

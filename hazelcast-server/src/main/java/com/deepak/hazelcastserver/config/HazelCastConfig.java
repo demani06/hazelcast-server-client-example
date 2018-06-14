@@ -13,7 +13,7 @@ import org.springframework.data.keyvalue.core.KeyValueTemplate;
 
 @Configuration
 //@EnableHazelcastRepositories(basePackages={"com.deepak.hazelcastmapstoreexample.respository"})
-@ComponentScan
+//@ComponentScan
 public class HazelCastConfig {
 
     @Bean
